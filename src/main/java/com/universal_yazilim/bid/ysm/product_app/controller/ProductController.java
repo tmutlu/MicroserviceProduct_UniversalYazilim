@@ -17,6 +17,14 @@ public class ProductController
     @Autowired
     private AbstractProductService productService;
 
+    @GetMapping("{id}")
+    public ResponseEntity<Product> findByID(@PathVariable(name = "id") Integer productID)
+    {
+        Product product = productService.findByID(productID);
+
+        return ResponseEntity.ok(product);
+    }
+
     @DeleteMapping("{id}")
     public ResponseEntity deleteByID(@PathVariable(name = "id") Integer productID)
     {

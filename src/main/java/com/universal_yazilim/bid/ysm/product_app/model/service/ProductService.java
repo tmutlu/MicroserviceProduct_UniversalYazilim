@@ -46,8 +46,17 @@ public class ProductService extends AbstractProductService
             return productRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException(ExceptionMessageType.FIND_BY_ID.getValue()));
         }
-        catch (RuntimeException e)
+        catch (NullPointerException e)
         {
+            Util.showGeneralExceptionInfo(e);
+            return null;
+        }
+        catch (IllegalArgumentException e)
+        {
+            Util.showGeneralExceptionInfo(e);
+            return null;
+        }
+        catch (RuntimeException e) {
             Util.showGeneralExceptionInfo(e);
             return null;
         }
